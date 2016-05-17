@@ -9,8 +9,8 @@ align macro
 
 SecurityCode:	; Uncomment the correct one for your target region
 
-		incbin "security\jap.bin"
-;		incbin "security\eur.bin"
+;		incbin "security\jap.bin"
+		incbin "security\eur.bin"
 ;		incbin "security\usa.bin"
 
 		; All Security sectors differ in size, and code executes from security end

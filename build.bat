@@ -1,28 +1,24 @@
 @echo off
 
-ECHO Building Filesystem image stage 1:
+PATH=%CD%\bin;%PATH%
+SET ROOT_DIR=%CD%
+SET SRC_DIR=%ROOT_DIR%\src
+SET BUILD_DIR=%ROOT_DIR%\build
 
-mkisofs -iso-level 1 -o filesystem.img -pad _filesystem
+ECHO Building Boot Sector IP.BIN
+cd %SRC_DIR%\bootsect
+asm68k /p ip.asm, ip.bin
 
-ECHO Building Filesystem image stage 2:
+ECHO Building Boot Sector SP.BIN
+asm68k /p sp.asm, sp.bin
 
-REM trimfsimage removes the first 8000 bytes of an ISO, leaving just the filesystem behind
+ECHO Building Boot Sector Binary
+asm68k /p bootsect.asm, %BUILD_DIR%\bootsect.bin
+del *.bin
+cd %ROOT_DIR%
 
-trimfsimage filesystem.img filesystem.bin
-del filesystem.img
-
-ECHO Building IP
-cd _boot
-..\asm68k /p ip.asm, ip.bin
-
-ECHO Building sub-cpu program
-..\asm68k /p sp.asm, sp.bin
-
-ECHO Building final ISO
-cd ..\
-asm68k /p main.asm, out.iso
-
-del filesystem.bin
+ECHO Building ISO
+mkisofs -iso-level 1 -G bootsect.bin -o out.iso -pad filesystem build/bootsect.bin
 
 pause
 

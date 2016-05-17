@@ -1,4 +1,4 @@
 # ProjectCD
 Sega/Mega CD Boot Loader
 
-Expeccts a valid Mega Drive/Mega CD program suitable for MegaCD booting to be names M_INIT.PRG and placed in the _filesystem folder.
+Expects a raw 68000 binary with base address and entry point of $200000 to be placed at filesystem\M_INIT.PRG
