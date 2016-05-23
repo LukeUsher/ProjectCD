@@ -73,7 +73,7 @@ SubCommand:
 ; =======================================================================================
 AsyncSubCommand:
 		tst.b	$A1200F		; is sub cpu free?
-		bne	SubCommand	; if not, wait for it to finish corrent operation
+		bne	AsyncSubCommand	; if not, wait for it to finish corrent operation
 
 		move.b	#00, $A1200E	; Clear Command
 @waitready:
