@@ -20,5 +20,8 @@ cd %ROOT_DIR%
 ECHO Building ISO
 mkisofs -iso-level 1 -G  %BUILD_DIR%\bootsect.bin -o out.iso -pad filesystem
 
+ECHO Converting to BIN
+
+
 pause
 
