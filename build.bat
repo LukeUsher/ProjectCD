@@ -18,7 +18,7 @@ del *.bin
 cd %ROOT_DIR%
 
 ECHO Building ISO
-mkisofs -iso-level 1 -G bootsect.bin -o out.iso -pad filesystem build/bootsect.bin
+mkisofs -iso-level 1 -G  %BUILD_DIR%\bootsect.bin -o out.iso -pad filesystem
 
 pause
 
